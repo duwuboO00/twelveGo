@@ -1,0 +1,81 @@
+# If you prefer the allow list template instead of the deny list, see community template:
+# https://github.com/github/gitignore/blob/main/community/Golang/Go.AllowList.gitignore
+#
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Test binary, built with `go test -c`
+*.test
+
+# Output of the go coverage tool, specifically when used with LiteIDE
+*.out
+
+# Dependency directories (remove the comment below to include it)
+# vendor/
+
+# Go workspace file
+go.work
+
+
+
+# 忽略 IntelliJ IDEA 相關的檔案和資料夾
+**/.idea/
+
+# 忽略 Eclipse 相關的檔案和資料夾
+**/.settings/
+**/.project
+**/.classpath
+**/.metadata/
+# 忽略編譯產生的檔案
+**/bin/
+**/obj/
+**/.exe
+**/.dll
+**/.so
+**/.dylib
+
+# 忽略node相關
+**/node_modules/
+
+# 忽略Python相關
+**/pycache/
+
+# 忽略快取
+**/.sass-cache/
+**/.cache/
+
+# 忽略所有的.npmrc檔案
+**/.npmrc
+
+# 忽略所有npm與yarn的lock檔案
+**/package-lock.json
+**/yarn.lock
+
+# 忽略log文件以及VS Debugger與Chrome Debugger的設定
+**/.log
+**/.psess
+/.pid
+**/.log.
+**/_log
+**/log
+**/.swp
+**/.swo
+**/*.swn
+.vs/
+.runtimeconfig.json
+appsettings.json
+appsettings.Development.json
+
+# 忽略視頻以及音訊檔案
+**/.mp4
+**/.avi
+**/.flv
+**/.mov
+**/.mkv
+**/.mp3
+**/.wav
+**/.aac
