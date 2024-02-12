@@ -6,10 +6,14 @@ import (
 	"twelveGo/config"
 	"twelveGo/pkg/api"
 	"github.com/gin-gonic/gin"
+	"log"
 )
 
 func main() {
-	cfg := config.GetConfig()
+	cfg, err := config.LoadConfig("/path/to/your/config")
+    if err != nil {
+        log.Fatal("cannot load config:", err)
+    }
 
 	router := gin.Default()
 

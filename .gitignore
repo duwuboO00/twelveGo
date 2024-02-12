@@ -79,3 +79,5 @@ appsettings.Development.json
 **/.mp3
 **/.wav
 **/.aac
+config.yaml
+config_example.yaml

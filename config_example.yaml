@@ -1,0 +1,29 @@
+port: "8080"
+
+redisConfig:
+  host: "localhost"
+  port: "6379"
+  password: ""
+  db: 0
+
+mongoDBConfig:
+  uri: "mongodb://localhost:27017"
+  database: "exampledb"
+
+postgresConfig:
+  host: "localhost"
+  port: "5432"
+  user: "postgres"
+  password: "password"
+  dbName: "exampledb"
+  sslMode: "disable"
+
+googleConfig:
+  clientID: "your-google-client-id"
+  clientSecret: "your-google-client-secret"
+  redirectURL: "http://localhost:8080/auth/google/callback"
+
+lineConfig:
+  clientID: "your-line-client-id"
+  clientSecret: "your-line-client-secret"
+  redirectURL: "http://localhost:8080/auth/line/callback"
