@@ -2,10 +2,15 @@
 CREATE TABLE IF NOT EXISTS product (
     -- 商品的唯一標識符
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+    -- 商品編號 不等於PK
     -- 商品名稱
     name VARCHAR(100) NOT NULL,
     -- 商品價格
     price DECIMAL(10, 2) NOT NULL,
+    -- 商品成本價格
+    -- 進貨批次表 PK
+    -- 廠商 PK
+    -- 商品進貨數量
     -- 商品庫存數量
     stock_quantity INTEGER NOT NULL,
     -- 商品分類的唯一標識符
