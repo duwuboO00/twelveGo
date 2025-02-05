@@ -1,7 +1,7 @@
 -- 建立 permission 表（如果不存在）
 CREATE TABLE IF NOT EXISTS user_permission (
     -- 權限的唯一標識符
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     -- 權限名稱
     name TEXT NOT NULL,
     -- 權限描述
