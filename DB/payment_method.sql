@@ -1,7 +1,7 @@
 -- 建立 payment_method 表（如果不存在）
 CREATE TABLE IF NOT EXISTS payment_method (
     -- 支付方式的唯一標識符
-    id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     -- 支付方式名稱
     name TEXT NOT NULL,
     -- 支付方式描述

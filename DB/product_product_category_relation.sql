@@ -1,7 +1,7 @@
 -- 建立 product_product_category_relation 表（如果不存在）
 CREATE TABLE IF NOT EXISTS product_product_category_relation (
     -- 關聯的唯一標識符
-    id UUID PRIMARY KEY,
+    id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     -- 商品的唯一標識符
     product_id UUID NOT NULL,
     -- 商品分類的唯一標識符
