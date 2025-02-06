@@ -1,21 +1,21 @@
 package models
 
 import (
-	"errors"
-	"github.com/google/uuid"
 	"time"
+	"github.com/google/uuid"
+
 )
 
 type ShoppingCart struct {
 	ID        uuid.UUID `db:"id"`
 	UserID    uuid.UUID `db:"user_id"`
 	ProductID uuid.UUID `db:"product_id"`
-	Quantity  int       `db:"quantity"`
 	CreatedAt time.Time `db:"created_at"`
 	UpdatedAt time.Time `db:"updated_at"`
 }
 
 func (c *ShoppingCart) AddItem() error {
+
 	if c.Quantity <= 0 {
 		return errors.New("quantity must be greater than zero")
 	}
@@ -24,6 +24,7 @@ func (c *ShoppingCart) AddItem() error {
 }
 
 func (c *ShoppingCart) UpdateItem() error {
+
 	if c.Quantity <= 0 {
 		return errors.New("quantity must be greater than zero")
 	}
