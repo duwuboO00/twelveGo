@@ -3,6 +3,7 @@ package models
 import (
 	"time"
 	"github.com/google/uuid"
+
 )
 
 type ShoppingCart struct {
@@ -14,11 +15,19 @@ type ShoppingCart struct {
 }
 
 func (c *ShoppingCart) AddItem() error {
+
+	if c.Quantity <= 0 {
+		return errors.New("quantity must be greater than zero")
+	}
 	// 實現添加項目到購物車的邏輯
 	return nil
 }
 
 func (c *ShoppingCart) UpdateItem() error {
+
+	if c.Quantity <= 0 {
+		return errors.New("quantity must be greater than zero")
+	}
 	// 實現更新購物車項目的邏輯
 	return nil
 }

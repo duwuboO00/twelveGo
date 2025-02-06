@@ -1,4 +1,5 @@
-package model
+
+package models
 
 import (
 	"github.com/google/uuid"
@@ -18,4 +19,5 @@ type User struct {
 	Address     *string   `json:"address,omitempty" db:"address" gorm:"type:text"`
 	CreatedAt   time.Time `json:"created_at" db:"created_at" gorm:"type:timestamp with time zone;default:CURRENT_TIMESTAMP"`
 	UpdatedAt   time.Time `json:"updated_at" db:"updated_at" gorm:"type:timestamp with time zone"`
+
 }
