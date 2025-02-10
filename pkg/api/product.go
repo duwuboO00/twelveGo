@@ -1,15 +1,17 @@
 package api
 
-import (
-	"/models"
-	"net/http"
-)
+// import (
+// 	"net/http"
+// 	"pkg/models"
+// )
 
-func CreateProduct(w http.ResponseWriter, r *http.Request) {
-	product := models.Product{}
-	err := product.Create()
-	if err != nil {
-		// 處理錯誤
-	}
-	// 返回成功響應
-}
+// func CreateProduct(w http.ResponseWriter, r *http.Request) {
+// 	product := models.Product{}
+// 	err := product.Create()
+// 	if err != nil {
+// 		http.Error(w, "Failed to create product", http.StatusInternalServerError)
+// 		return
+// 	}
+// 	w.WriteHeader(http.StatusOK)
+// 	w.Write([]byte("Product created successfully"))
+// }
