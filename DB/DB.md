@@ -17,7 +17,7 @@
 | 商品與分類關聯               | Product-Product Category Relation    | [product_product_category_relation.sql](./product_product_category_relation.sql) | 儲存商品與分類的關聯 |
 | 購物車                        | Shopping Cart                        | [shopping_cart.sql](./shopping_cart.sql)                        | 儲存購物車資訊           |
 | 縮網址                          | URLs                                 | [urls.sql](./urls.sql)                                          | 檔案映射網址用         |
-| 使用者                        | User                                 | [user.sql](./user.sql)                                          | 儲存使用者資訊           |
+| 使用者                        | User                                 | [users.sql](./users.sql)                                          | 儲存使用者資訊           |
 | 使用者權限                    | User Permission                      | [user_permission.sql](./user_permission.sql)                    | 儲存使用者權限定義       |
 | 使用者權限關聯                | User Permission Relation             | [user_permission_relation.sql](./user_permission_relation.sql)  | 儲存使用者與權限關聯     |
 | 使用者 Sessions               | User Sessions                        | [user_sessions .sql](./user_sessions.sql)                      | 儲存使用者 Session 資訊  |
