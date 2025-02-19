@@ -1,0 +1,193 @@
+openapi: 3.0.3
+info:
+  title: TwelveGo API
+  description: "TwelveGo 後端 API 文件，支援 Google OAuth、檔案上傳、會員功能、購物車等。"
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: "本地開發環境"
+
+paths:
+  /heartbeat:
+    get:
+      summary: 伺服器健康檢查
+      operationId: heartbeat
+      responses:
+        "200":
+          description: 伺服器正常運行
+
+  /auth/google:
+    get:
+      summary: 進入 Google OAuth 登入頁面
+      operationId: googleLogin
+      responses:
+        "302":
+          description: 重定向到 Google 登入頁面
+
+  /auth/google/callback:
+    get:
+      summary: Google OAuth 回調
+      operationId: googleCallback
+      parameters:
+        - name: code
+          in: query
+          required: true
+          description: Google OAuth 交換的授權碼
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 用戶登入成功
+        "401":
+          description: 授權失敗
+
+  /auth/login:
+    post:
+      summary: 用戶登入
+      operationId: login
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                google_id:
+                  type: string
+                  example: "google_abcdef"
+      responses:
+        "200":
+          description: 登入成功
+        "401":
+          description: 認證失敗
+
+  /auth/logout:
+    post:
+      summary: 用戶登出
+      operationId: logout
+      responses:
+        "200":
+          description: 登出成功
+        "400":
+          description: 無效的會話
+
+  /auth/updateName:
+    put:
+      summary: 更新用戶名稱
+      operationId: updateName
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  example: "Alice"
+      responses:
+        "200":
+          description: 名稱更新成功
+        "400":
+          description: 無效的請求
+
+  /user/profile:
+    get:
+      summary: 取得當前用戶資訊
+      operationId: getUserProfile
+      responses:
+        "200":
+          description: 返回用戶資訊
+
+  /upload:
+    post:
+      summary: 上傳單個或多個檔案
+      operationId: uploadFile
+      requestBody:
+        required: true
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                file:
+                  type: string
+                  format: binary
+      responses:
+        "200":
+          description: 檔案上傳成功
+    get:
+      summary: 取得所有上傳的檔案
+      operationId: listFiles
+      responses:
+        "200":
+          description: 返回檔案列表
+
+  /upload/{id}:
+    get:
+      summary: 取得指定檔案
+      operationId: getFile
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 返回檔案
+        "404":
+          description: 檔案不存在
+
+  /memberheartbeat:
+    get:
+      summary: 會員 API 健康檢查
+      operationId: memberHeartbeat
+      responses:
+        "200":
+          description: 會員 API 正常運行
+
+  /cart/add:
+    post:
+      summary: 加入商品至購物車
+      operationId: addToCart
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                product_id:
+                  type: string
+                  example: "12345"
+                quantity:
+                  type: integer
+                  example: 2
+      responses:
+        "200":
+          description: 商品已加入購物車
+
+  /cart/remove/{id}:
+    delete:
+      summary: 從購物車移除商品
+      operationId: removeFromCart
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: string
+      responses:
+        "200":
+          description: 商品已移除
+        "404":
+          description: 商品不存在
+
+  /cart:
+    get:
+      summary: 查看購物車內容
+      operationId: viewCart
+      responses:
+        "200":
+          description: 返回購物車內容
