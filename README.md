@@ -66,7 +66,7 @@ docker run -p 8080:8080 twelve-go
 
 ## backend
 - [ ] DB update
-  - [ ] 完成
+  - [x] 完成
   - [ ] revicew 完成
 - [ ] select one apis
   - [ ] 完成
