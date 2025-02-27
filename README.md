@@ -62,9 +62,10 @@ docker build -f deployments/Dockerfile -t twelve-go .
 docker run -p 8080:8080 twelve-go
 ```
 
-# TODO
+## TODO
 
-## backend
+### backend
+
 - [ ] DB update
   - [x] 完成
   - [ ] revicew 完成
@@ -83,10 +84,36 @@ docker run -p 8080:8080 twelve-go
 - [ ] 庫存計算邏輯
   - [ ] 完成
   - [ ] revicew 完成
+- [ ] oAuth API
+  - [ ] Google
+    - [ ] 完成
+    - [ ] revicew 完成
+  - [ ] Line
+    - [ ] 完成
+    - [ ] revicew 完成
+  - [ ] Discord
+    - [ ] 完成
+    - [ ] revicew 完成
+- [ ] session
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] JWT
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] Role & 權限認證
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] API 權限認證
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] 權限認證 filter / middleware
+  - [ ] 完成
+  - [ ] revicew 完成
 
-## infra
+### infra
 
-### docker compose
+#### docker compose
+
 - [ ] db docker
   - [ ] 完成
   - [ ] revicew 完成
