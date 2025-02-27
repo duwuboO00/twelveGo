@@ -65,16 +65,31 @@ docker run -p 8080:8080 twelve-go
 # TODO
 
 ## backend
-
-1. DB update
-2. select one apis
-3. create apis
-4. update apis
-5. delete apis
-6. 庫存計算邏輯
+- [ ] DB update
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] select one apis
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] create apis
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] update apis
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] delete apis
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] 庫存計算邏輯
+  - [ ] 完成
+  - [ ] revicew 完成
 
 ## infra
 
 ### docker compose
-1. db docker
-2. docker sever
+- [ ] db docker
+  - [ ] 完成
+  - [ ] revicew 完成
+- [ ] docker sever
+  - [ ] 完成
+  - [ ] revicew 完成
