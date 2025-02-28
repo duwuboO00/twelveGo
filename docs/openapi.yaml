@@ -139,7 +139,7 @@ paths:
         "404":
           description: 檔案不存在
 
-  /memberheartbeat:
+  /member/heartbeat:
     get:
       summary: 會員 API 健康檢查
       operationId: memberHeartbeat

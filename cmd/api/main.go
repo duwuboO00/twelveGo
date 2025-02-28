@@ -60,9 +60,10 @@ func main() {
 		})
 	})
 
-	router.GET("/heartbeat", api.Heartbeat)
-	router.POST("/login", api.Login)
-	router.GET("/memberheartbeat", api.MemberHeartbeat)
+	// 初始化路由
+	api.InitAuthRouter(router)
+	api.InitShoppingCartRouter(router)
+	api.InitMemberRouter(router)
 
 	// 自定義 404 處理
 	router.NoRoute(func(c *gin.Context) {
