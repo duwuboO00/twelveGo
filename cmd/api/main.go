@@ -3,15 +3,22 @@ package main
 import (
 	"net/http"
 	"twelveGo/config"
+	"twelveGo/internal/database"
 	"twelveGo/pkg/api"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
+	"go.uber.org/zap"
 )
 
-func main() {
+// GetJWTClaims 為一個 stub，請根據實際情況實作
+func GetJWTClaims(c *gin.Context) interface{} {
+	// TODO: 完整實作 JWT 解析
+	return map[string]interface{}{}
+}
 
+func main() {
 	cfg := config.GetConfig()
 	router := gin.Default()
 
@@ -22,30 +29,39 @@ func main() {
 	// 設置 HTML 模板
 	router.LoadHTMLGlob("web/templates/*")
 
+	// 使用 database.InitDB() 建立 DB 連線，內部使用的連線字串
+	// 已在 database.DBURL 中組裝好，作為 singleton 使用
+	db, err := database.InitDB()
+	if err != nil {
+		zap.L().Fatal("無法初始化資料庫", zap.Error(err))
+	}
+	// 為避免 db 未使用錯誤，暫時忽略 db 變數，未來如需使用，請將 db 傳遞至相關模組
+	_ = db
+	zap.L().Info("資料庫初始化成功！")
+
+	// 取得從 database.DBURL 產生的 dbURL
+	dbURL := database.DBURL
+
+	// 使用 config 中 MongoDB 設定建立 URI
+	mongoURL := cfg.MongoDBConfig.URI
+
 	// 路由設置
 	router.GET("/", func(c *gin.Context) {
 		session := sessions.Default(c)
 		userID := session.Get("user_id")
-		// 假設您已經有方法從 JWT 中提取 claims 數據
-		jwtClaims := GetJWTClaims(c) // 這需要您根據實際情況實現 GetJWTClaims 函數
+		jwtClaims := GetJWTClaims(c)
 
 		c.HTML(http.StatusOK, "index.html", gin.H{
 			"Port":      cfg.Port,
-			"DBURL":     cfg.DBURL,
-			"MongoURL":  cfg.MongoURL,
+			"DBURL":     dbURL, // 顯示由 database.InitDB() 組裝好的 dbURL
+			"MongoURL":  mongoURL,
 			"UserID":    userID,
 			"JWTClaims": jwtClaims,
 		})
 	})
 
 	router.GET("/heartbeat", api.Heartbeat)
-
-	// 登入路由
 	router.POST("/login", api.Login)
-
-	// 受保護的路由
-	router.GET("/protected", api.SomeProtectedRoute)
-
 	router.GET("/memberheartbeat", api.MemberHeartbeat)
 
 	// 自定義 404 處理
@@ -53,17 +69,14 @@ func main() {
 		c.HTML(http.StatusNotFound, "404.html", nil)
 	})
 
-	// 全局錯誤處理
+	// 全局錯誤處理中介層
 	router.Use(func(c *gin.Context) {
-		c.Next() // 處理請求
-
-		// 檢查是否有任何錯誤
+		c.Next()
 		if len(c.Errors) > 0 {
-			c.HTML(http.StatusInternalServerError, "error.html", gin.H{
-				"errors": c.Errors,
-			})
+			c.HTML(http.StatusInternalServerError, "error.html",
+				gin.H{"errors": c.Errors})
 		}
 	})
 
-	router.Run(cfg.Port) // 啟動服務器
+	router.Run(":" + cfg.Port)
 }
