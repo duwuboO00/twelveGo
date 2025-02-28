@@ -3,27 +3,38 @@ package database
 import (
 	"database/sql"
 	"fmt"
-	"github.com/lib/pq"
-	"log"
+
+	"twelveGo/config"
+
+	"go.uber.org/zap"
+
+	_ "github.com/lib/pq"
 )
 
-func InitDB() {
-	connStr := "user=yourusername dbname=yourdbname sslmode=disable password=yourpassword" // 請替換為實際的連接信息
-	db, err := sql.Open("postgres", connStr)
+// DBURL 為全域變數，存放組合好的連線字串
+var DBURL string
+
+func InitDB() (*sql.DB, error) {
+	cfg := config.GetConfig() // 從 config.go 取得設定
+	pg := cfg.PostgresConfig
+	DBURL = fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=%s",
+		pg.Host, pg.Port, pg.User, pg.Password, pg.DBName, pg.SSLMode)
+
+	db, err := sql.Open("postgres", DBURL)
 	if err != nil {
-		log.Fatal("無法連接到數據庫: ", err)
+		zap.L().Fatal("無法連接到數據庫", zap.Error(err))
+		return nil, err
 	}
 
-	// 設置數據庫連接池參數
 	db.SetMaxOpenConns(20)
 	db.SetMaxIdleConns(20)
 	db.SetConnMaxLifetime(0)
 
-	// 測試數據庫連接
 	if err := db.Ping(); err != nil {
-		log.Fatal("無法 ping 通數據庫: ", err)
+		zap.L().Fatal("無法 ping 通數據庫", zap.Error(err))
+		return nil, err
 	}
 
-	fmt.Println("數據庫連接成功！")
-	// 確保 db 對象全局可用或按需傳遞
+	zap.L().Info("數據庫連接成功！")
+	return db, nil
 }

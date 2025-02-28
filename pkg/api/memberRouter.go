@@ -1,10 +1,10 @@
 package api
 
-// import (
-// 	"net/http"
-// 	"github.com/gin-gonic/gin"
-// )
+import (
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
 
-// func MemberHeartbeat(c *gin.Context) {
-// 	c.String(http.StatusOK, "member ok")
-// }
+func MemberHeartbeat(c *gin.Context) {
+	c.String(http.StatusOK, "member ok")
+}
