@@ -43,8 +43,8 @@ type OAuthConfig struct {
 }
 
 func LoadConfig() (*Config, error) {
-	viper.AddConfigPath("../")    // 假設從 config 目錄執行，向上一級尋找配置文件
-	viper.SetConfigName("config") // 優先尋找 config.yaml
+	viper.AddConfigPath(".") // 在目前執行目錄中尋找 config.yaml
+	viper.SetConfigName("config")
 	viper.SetConfigType("yaml")
 
 	viper.AutomaticEnv() // 讀取環境變量
