@@ -1,5 +1,5 @@
 # 使用 alpine 映像建立一個輕量級的容器
-FROM golang:1.21 AS builder
+FROM golang:1.23.6 AS builder
 
 # 設定工作目錄
 WORKDIR /app
