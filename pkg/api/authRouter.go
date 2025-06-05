@@ -28,7 +28,30 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	// 在這裡實現用戶登入邏輯，例如驗證用戶憑證和創建會話
+	// 解析使用者提交的帳號與密碼
+	var creds struct {
+		Username string `form:"username" json:"username" binding:"required"`
+		Password string `form:"password" json:"password" binding:"required"`
+	}
+	if err := c.ShouldBind(&creds); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "缺少帳號或密碼"})
+		return
+	}
+
+	// TODO: 這裡應改為檢查資料庫中的帳號密碼
+	if creds.Username != "user123" || creds.Password != "password123" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "帳號或密碼錯誤"})
+		return
+	}
+
+	// 建立 session
+	session := sessions.Default(c)
+	session.Set("user_id", creds.Username)
+	if err := session.Save(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "無法建立會話"})
+		return
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"message": "登入成功",
 		// 注意：正式版本請移除下方配置回應
