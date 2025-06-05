@@ -11,7 +11,8 @@
   - Body:
     ```json
     {
-        "google_id": "google_abcdef"
+        "identifier": "demo",
+        "password": "password"
     }
     ```
 - **Response:**
@@ -20,7 +21,10 @@
     ```json
     {
         "message": "登入成功",
-        "user_id": "google_abcdef"
+        "user": {
+            "id": "demo",
+            "email": "demo@example.com"
+        }
     }
     ```
 

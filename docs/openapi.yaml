@@ -52,9 +52,12 @@ paths:
             schema:
               type: object
               properties:
-                google_id:
+                identifier:
                   type: string
-                  example: "google_abcdef"
+                  example: "demo"
+                password:
+                  type: string
+                  example: "password"
       responses:
         "200":
           description: 登入成功

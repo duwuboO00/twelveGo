@@ -2,7 +2,6 @@ package api
 
 import (
 	"net/http"
-	"twelveGo/config"
 
 	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
@@ -20,19 +19,37 @@ func googleAuth(c *gin.Context) {
 
 // Login 處理用戶登入請求
 func Login(c *gin.Context) {
-	cfg, err := config.LoadConfig()
-	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{
-			"error": "無法加載配置",
-		})
+	type loginRequest struct {
+		Identifier string `json:"identifier" form:"identifier" binding:"required"`
+		Password   string `json:"password" form:"password" binding:"required"`
+	}
+	var req loginRequest
+	if err := c.ShouldBind(&req); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "參數錯誤"})
 		return
 	}
 
-	// 在這裡實現用戶登入邏輯，例如驗證用戶憑證和創建會話
+	// TODO: 從資料庫取出使用者資料並驗證密碼
+	if req.Identifier != "demo" || req.Password != "password" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "帳號或密碼錯誤"})
+		return
+	}
+
+	session := sessions.Default(c)
+	session.Set("user_id", req.Identifier)
+	if err := session.Save(); err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "無法建立會話"})
+		return
+	}
+
+	fakeUser := gin.H{
+		"id":    req.Identifier,
+		"email": "demo@example.com",
+	}
+
 	c.JSON(http.StatusOK, gin.H{
 		"message": "登入成功",
-		// 注意：正式版本請移除下方配置回應
-		"config": cfg,
+		"user":    fakeUser,
 	})
 }
 
