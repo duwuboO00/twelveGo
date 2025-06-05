@@ -11,8 +11,7 @@
   - Body:
     ```json
     {
-        "username": "user123",
-        "password": "password123"
+        "google_id": "google_abcdef"
     }
     ```
 - **Response:**
@@ -21,7 +20,7 @@
     ```json
     {
         "message": "登入成功",
-        "user_id": "user123"
+        "user_id": "google_abcdef"
     }
     ```
 

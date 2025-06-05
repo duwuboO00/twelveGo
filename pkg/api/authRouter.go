@@ -28,25 +28,22 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	// 解析使用者提交的帳號與密碼
-	var creds struct {
-		Username string `form:"username" json:"username" binding:"required"`
-		Password string `form:"password" json:"password" binding:"required"`
+	// 解析 Google ID
+	var payload struct {
+		GoogleID string `form:"google_id" json:"google_id" binding:"required"`
 	}
-	if err := c.ShouldBind(&creds); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "缺少帳號或密碼"})
+	if err := c.ShouldBind(&payload); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": "缺少 Google ID"})
 		return
 	}
 
-	// TODO: 這裡應改為檢查資料庫中的帳號密碼
-	if creds.Username != "user123" || creds.Password != "password123" {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "帳號或密碼錯誤"})
+	// TODO: 應檢查資料庫或其他認證機制確認 google_id 是否有效
+	if payload.GoogleID != "google_abcdef" {
+		c.JSON(http.StatusUnauthorized, gin.H{"error": "無效的 Google ID"})
 		return
 	}
-
-	// 建立 session
 	session := sessions.Default(c)
-	session.Set("user_id", creds.Username)
+	session.Set("user_id", payload.GoogleID)
 	if err := session.Save(); err != nil {
 		c.JSON(http.StatusInternalServerError, gin.H{"error": "無法建立會話"})
 		return
