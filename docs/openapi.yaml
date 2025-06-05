@@ -43,23 +43,24 @@ paths:
 
   /auth/login:
     post:
-      summary: 用戶登入
+      summary: 系統管理員登入
       operationId: login
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                google_id:
-                  type: string
-                  example: "google_abcdef"
       responses:
         "200":
-          description: 登入成功
-        "401":
-          description: 認證失敗
+          description: 登入成功並返回伺服器設定
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "登入成功"
+                  config:
+                    type: object
+                    description: 伺服器設定內容
+                    example:
+                      example: "value"
 
   /auth/logout:
     post:
