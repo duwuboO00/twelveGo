@@ -28,27 +28,7 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	// 解析 Google ID
-	var payload struct {
-		GoogleID string `form:"google_id" json:"google_id" binding:"required"`
-	}
-	if err := c.ShouldBind(&payload); err != nil {
-		c.JSON(http.StatusBadRequest, gin.H{"error": "缺少 Google ID"})
-		return
-	}
-
-	// TODO: 應檢查資料庫或其他認證機制確認 google_id 是否有效
-	if payload.GoogleID != "google_abcdef" {
-		c.JSON(http.StatusUnauthorized, gin.H{"error": "無效的 Google ID"})
-		return
-	}
-	session := sessions.Default(c)
-	session.Set("user_id", payload.GoogleID)
-	if err := session.Save(); err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "無法建立會話"})
-		return
-	}
-
+	// 在這裡實現用戶登入邏輯，例如驗證用戶憑證和創建會話
 	c.JSON(http.StatusOK, gin.H{
 		"message": "登入成功",
 		// 注意：正式版本請移除下方配置回應
