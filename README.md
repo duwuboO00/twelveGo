@@ -68,47 +68,47 @@ docker run -p 8080:8080 twelve-go
 
 - [ ] DB update
   - [x] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] select one apis
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] create apis
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] update apis
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] delete apis
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] 庫存計算邏輯
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] oAuth API
   - [ ] Google
     - [ ] 完成
-    - [ ] revicew 完成
+    - [ ] review 完成
   - [ ] Line
     - [ ] 完成
-    - [ ] revicew 完成
+    - [ ] review 完成
   - [ ] Discord
     - [ ] 完成
-    - [ ] revicew 完成
+    - [ ] review 完成
 - [ ] session
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] JWT
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] Role & 權限認證
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] API 權限認證
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 - [ ] 權限認證 filter / middleware
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
 
 ### infra
 
@@ -116,7 +116,7 @@ docker run -p 8080:8080 twelve-go
 
 - [ ] db docker
   - [ ] 完成
-  - [ ] revicew 完成
-- [ ] docker sever
+  - [ ] review 完成
+- [ ] docker server
   - [ ] 完成
-  - [ ] revicew 完成
+  - [ ] review 完成
