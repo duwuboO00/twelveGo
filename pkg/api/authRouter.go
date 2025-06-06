@@ -28,7 +28,6 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	// 在這裡實現用戶登入邏輯，例如驗證用戶憑證和創建會話
 	c.JSON(http.StatusOK, gin.H{
 		"message": "登入成功",
 		// 注意：正式版本請移除下方配置回應
