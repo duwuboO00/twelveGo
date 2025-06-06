@@ -62,6 +62,14 @@ paths:
                     example:
                       example: "value"
 
+  /auth/login-test:
+    get:
+      summary: 測試登入
+      operationId: loginTest
+      responses:
+        "200":
+          description: 登入成功
+
   /auth/logout:
     post:
       summary: 用戶登出
@@ -71,6 +79,16 @@ paths:
           description: 登出成功
         "400":
           description: 無效的會話
+
+  /auth/check:
+    get:
+      summary: 驗證 Session
+      operationId: checkSession
+      responses:
+        "200":
+          description: Session 有效
+        "401":
+          description: 未授權
 
   /auth/updateName:
     put:

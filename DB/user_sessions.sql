@@ -6,6 +6,7 @@ CREATE TABLE IF NOT EXISTS user_sessions (
     ip_address  VARCHAR(255) NOT NULL,                       -- 連線 IP 地址
     user_agent  TEXT,                                        -- 用戶端的 User-Agent
     status      BOOLEAN,                                     -- 會話狀態（有效或已失效）
+    last_activity TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP,
     created_at  TIMESTAMP WITH TIME ZONE DEFAULT CURRENT_TIMESTAMP, -- 建立時間
     deaded_at   TIMESTAMP WITH TIME ZONE,                    -- 會話終止時間
     UNIQUE (user_id, session_id)                             -- 同一 user_id 與 session_id 不可重複
@@ -21,5 +22,6 @@ COMMENT ON COLUMN user_sessions.session_id IS '會話 ID（唯一）';
 COMMENT ON COLUMN user_sessions.ip_address IS '連線 IP 地址';
 COMMENT ON COLUMN user_sessions.user_agent IS '用戶端的 User-Agent';
 COMMENT ON COLUMN user_sessions.status     IS '會話狀態（有效或已失效）';
+COMMENT ON COLUMN user_sessions.last_activity IS '最後活動時間';
 COMMENT ON COLUMN user_sessions.created_at IS '會話建立時間，預設為當下時間';
 COMMENT ON COLUMN user_sessions.deaded_at  IS '會話終止或失效的時間';

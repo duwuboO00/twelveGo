@@ -5,26 +5,15 @@ import (
 	"twelveGo/config"
 	"twelveGo/internal/database"
 	"twelveGo/pkg/api"
+	"twelveGo/pkg/models"
 
-	"github.com/gin-contrib/sessions"
-	"github.com/gin-contrib/sessions/cookie"
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 )
 
-// GetJWTClaims 為一個 stub，請根據實際情況實作
-func GetJWTClaims(c *gin.Context) interface{} {
-	// TODO: 完整實作 JWT 解析
-	return map[string]interface{}{}
-}
-
 func main() {
 	cfg := config.GetConfig()
 	router := gin.Default()
-
-	// 設置基於 Cookie 的會話
-	store := cookie.NewStore([]byte("your_secret_key"))
-	router.Use(sessions.Sessions("twelveGo_session", store))
 
 	// 設置 HTML 模板
 	router.LoadHTMLGlob("web/templates/*")
@@ -47,16 +36,19 @@ func main() {
 
 	// 路由設置
 	router.GET("/", func(c *gin.Context) {
-		session := sessions.Default(c)
-		userID := session.Get("user_id")
-		jwtClaims := GetJWTClaims(c)
-
+		sid, _ := c.Cookie("session_id")
+		var sessionData string
+		if sid != "" {
+			if s, err := models.GetSession(sid); err == nil && s != nil {
+				sessionData = s.UserID.String()
+			}
+		}
 		c.HTML(http.StatusOK, "index.html", gin.H{
-			"Port":      cfg.Port,
-			"DBURL":     dbURL, // 顯示由 database.InitDB() 組裝好的 dbURL
-			"MongoURL":  mongoURL,
-			"UserID":    userID,
-			"JWTClaims": jwtClaims,
+			"Port":        cfg.Port,
+			"DBURL":       dbURL,
+			"MongoURL":    mongoURL,
+			"SessionID":   sid,
+			"SessionData": sessionData,
 		})
 	})
 

@@ -14,6 +14,9 @@ import (
 // DBURL 為全域變數，存放組合好的連線字串
 var DBURL string
 
+// DB 為連線池 singleton，供其他模組共用
+var DB *sql.DB
+
 func InitDB() (*sql.DB, error) {
 	cfg := config.GetConfig() // 從 config.go 取得設定
 	pg := cfg.PostgresConfig
@@ -34,6 +37,8 @@ func InitDB() (*sql.DB, error) {
 		zap.L().Fatal("無法 ping 通數據庫", zap.Error(err))
 		return nil, err
 	}
+
+	DB = db
 
 	zap.L().Info("數據庫連接成功！")
 	return db, nil

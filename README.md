@@ -4,7 +4,7 @@
 
 ## 功能特色
 
-- 使用者認證與授權 (JWT + Session)
+- 使用者認證與授權 (Session)
 - 商品管理系統
 - 購物車功能
 - 訂單管理
@@ -17,7 +17,7 @@
 - Web 框架：Gin
 - 資料庫：PostgreSQL
 - 快取：Redis (待實現)
-- 會話管理：gorilla/sessions
+ - 會話管理：PostgreSQL Session
 - API 文件：OpenAPI/Swagger (待實現)
 
 ## 快速開始
@@ -95,9 +95,6 @@ docker run -p 8080:8080 twelve-go
     - [ ] 完成
     - [ ] review 完成
 - [ ] session
-  - [ ] 完成
-  - [ ] review 完成
-- [ ] JWT
   - [ ] 完成
   - [ ] review 完成
 - [ ] Role & 權限認證
