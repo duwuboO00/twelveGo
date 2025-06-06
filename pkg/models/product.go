@@ -5,18 +5,22 @@ import (
 )
 
 type Product struct {
-	ID           uuid.UUID `db:"id"`
-	Name         string    `db:"name"`
-	Price        float64   `db:"price"`
-	StockQuantity int      `db:"stock_quantity"`
-	CategoryID    uuid.UUID `db:"category_id"`
-	Description  string    `db:"description"`
-	MediaLink1   string    `db:"media_link_1"`
-	MediaLink2   string    `db:"media_link_2"`
-	MediaLink3   string    `db:"media_link_3"`
-	MediaLink4   string    `db:"media_link_4"`
-	MediaLink5   string    `db:"media_link_5"`
-	MediaLink6   string    `db:"media_link_6"`
+	ID               uuid.UUID `db:"id"`
+	ProductNo        string    `db:"product_no"`
+	Name             string    `db:"name"`
+	Price            float64   `db:"price"`
+	CostPrice        float64   `db:"cost_price"`
+	OrderBatchID     uuid.UUID `db:"order_batch_id"`
+	CompanyID        uuid.UUID `db:"company_id"`
+	PurchaseQuantity int       `db:"purchase_quantity"`
+	CategoryID       uuid.UUID `db:"category_id"`
+	Description      string    `db:"description"`
+	MediaLink1       string    `db:"media_link_1"`
+	MediaLink2       string    `db:"media_link_2"`
+	MediaLink3       string    `db:"media_link_3"`
+	MediaLink4       string    `db:"media_link_4"`
+	MediaLink5       string    `db:"media_link_5"`
+	MediaLink6       string    `db:"media_link_6"`
 }
 
 type ProductCategory struct {

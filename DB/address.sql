@@ -3,7 +3,7 @@ CREATE TABLE IF NOT EXISTS address (
     -- 地址的唯一標識符
     id UUID PRIMARY KEY,
     -- 使用者的唯一標識符
-    user_id UUID REFERENCES "user"(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id),
     -- 地址的詳細描述
     description TEXT,
     -- 郵遞區號
