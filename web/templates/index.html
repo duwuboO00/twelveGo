@@ -19,10 +19,10 @@
         <p>Welcome, guest</p>
         {{ end }}
     </div>
-    <div id="jwtSessionInfo">
-        <h2>JWT & Session Information</h2>
-        <p>JWT Claims: {{.JWTClaims}}</p>
+    <div id="sessionInfo">
+        <h2>Session Information</h2>
         <p>Session Data: {{.SessionData}}</p>
+        <p>Session ID: {{.SessionID}}</p>
     </div>
     <div id="status">JS Live</div>
     <div class="container">

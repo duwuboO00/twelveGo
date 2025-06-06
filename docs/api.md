@@ -33,6 +33,30 @@
     }
     ```
 
+### Session 檢查
+
+- **URL:** `/auth/check`
+- **Method:** GET
+- **Description:** 檢查當前 Session 是否有效
+- **Response:**
+  - Status: 200 OK
+  - Body:
+    ````
+    ok
+    ````
+
+### 測試登入
+
+- **URL:** `/auth/login-test`
+- **Method:** GET
+- **Description:** 生成測試用 Session 並回傳 ok
+- **Response:**
+  - Status: 200 OK
+  - Body:
+    ```
+    ok
+    ```
+
 ## 商品
 
 ### 搜尋商品
