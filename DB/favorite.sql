@@ -3,9 +3,9 @@ CREATE TABLE IF NOT EXISTS favorite (
     -- 最愛的唯一標識符
     id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
     -- 關聯的使用者ID
-    user_id UUID REFERENCES user(id) ON DELETE CASCADE,
+    user_id UUID REFERENCES users(id),
     -- 關聯的商品ID
-    product_id UUID REFERENCES product(id) ON DELETE CASCADE,
+    product_id UUID REFERENCES product(id),
     -- 最愛的建立時間
     created_at TIMESTAMP NOT NULL DEFAULT NOW()
 );

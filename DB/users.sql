@@ -24,15 +24,15 @@ CREATE TABLE IF NOT EXISTS "users" (
 );
 
 -- 為表添加註釋
-COMMENT ON TABLE "user" IS '用於存儲用戶信息的表';
+COMMENT ON TABLE "users" IS '用於存儲用戶信息的表';
 
 -- 為每個欄位添加註釋
-COMMENT ON COLUMN "user".id IS '用戶的唯一標識符';
-COMMENT ON COLUMN "user".user_name IS '用戶的名稱';
-COMMENT ON COLUMN "user".email IS '用戶的電子郵件地址';
-COMMENT ON COLUMN "user".line_id IS 'Line ID';
-COMMENT ON COLUMN "user".google_id IS 'Google ID';
-COMMENT ON COLUMN "user".apple_id IS 'Apple ID';
-COMMENT ON COLUMN "user".date_of_birth IS '用戶的出生日期';
-COMMENT ON COLUMN "user".gender IS '用戶的性別（M 表示男性，F 表示女性，U 未知）';
-COMMENT ON COLUMN "user".address IS '用戶的地址';
+COMMENT ON COLUMN "users".id IS '用戶的唯一標識符';
+COMMENT ON COLUMN "users".user_name IS '用戶的名稱';
+COMMENT ON COLUMN "users".email IS '用戶的電子郵件地址';
+COMMENT ON COLUMN "users".line_id IS 'Line ID';
+COMMENT ON COLUMN "users".google_id IS 'Google ID';
+COMMENT ON COLUMN "users".apple_id IS 'Apple ID';
+COMMENT ON COLUMN "users".date_of_birth IS '用戶的出生日期';
+COMMENT ON COLUMN "users".gender IS '用戶的性別（M 表示男性，F 表示女性，U 未知）';
+COMMENT ON COLUMN "users".address IS '用戶的地址';
